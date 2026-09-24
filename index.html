@@ -18,6 +18,8 @@
             background-color: #afddd8;
             /* background-image: url("images/bg01.jpg"); */
             font-family: "Space Mono", monospace;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
             
         h1, p {
@@ -78,9 +80,8 @@
             padding-inline-start: 0;
         }
 
-        .menu ul li {
-            width: 18%;
-            min-width: 100px;
+        .start button {
+            width: 100px;
             padding: 6px 10px;
             margin: 7px 6px;
             float: left;
@@ -89,28 +90,43 @@
             color: #333;
             text-align: center;
             background-color: #fae4ef;
-        }
-        
-        .menu ul li#start {
-            width: 80px;
-            min-width: 50px;
-        }
-
-        .menu ul li a {
-            color: #333;
+            font-family: "Space Mono", monospace;
         }
 
         .time {
             width: 100px;
             float: right;
             text-align: right;
-            padding: 15px 25px 0 0;
+            padding: 11px 25px 0 0;
             color: #333;
         }
 
         .clr {
             clear: both;
         }
+
+        #box {
+            padding: 15px;
+            background-color: #fae4ef;
+            width: 200px;
+            margin: 10px;
+            height: 300px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            position: absolute;
+            bottom: 48px;
+
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        #box.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+
 
     </style>
 </head>
@@ -134,12 +150,9 @@
         </div>
         <div class="clr"></div>
     </div>
+        <div id="box">Hello!</div>
     <div class="menu">
-        <ul>
-            <li id="start">
-                <a>♡ Start</a>
-            </li>
-        </ul>
+        <div class="start"><button onclick="slideUp()">♡ Start</button></div>
         <div class="time"><span id="current-time"></span></div>
     </div>
 </div>
@@ -154,6 +167,11 @@
     }
     updateTime();
     setInterval(updateTime, 1000);
+
+
+    function slideUp(){
+        document.getElementById("box").classList.toggle("show");
+    }
 </script>
 </body>
 </html>
